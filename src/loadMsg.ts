@@ -1,10 +1,10 @@
 import * as vscode from 'vscode';
-import MSGReader from 'msgreader';
+import MsgReader from "@kenjiuno/msgreader";
 
 export default async function loadMsg(uri: vscode.Uri): Promise<Email> {
   const buffer = Buffer.from(await vscode.workspace.fs.readFile(uri));
 
-  const msgReader = new MSGReader(buffer);
+  const msgReader = new MSGReader.default(buffer);
   const fileData = msgReader.getFileData();
   if (fileData.error) {
     throw fileData.error;
